@@ -16,3 +16,12 @@
       <button  mat-raised-button (click)="login()"  color="primary">Login</button>
   </mat-card-actions>
 </mat-card>
+
+<rating  style="color: #11C4B0;font-size: 40px;" [(ngModel)]="rate" [max]="max" [readonly]="isReadonly">
+</rating>
+
+<div class="card">
+    <pre class="card-block card-header" style="margin:15px 0;">
+    Rate: <b>{{rate}}</b>
+    </pre>
+</div>

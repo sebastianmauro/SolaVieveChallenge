@@ -9,6 +9,9 @@ import { LoginComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MessageComponent } from './message/message.component';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import {MatIconModule} from '@angular/material/icon';
+import { RatingModule } from 'ngx-bootstrap/rating';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,12 @@ import { FormsModule } from '@angular/forms';
     MatButtonModule,
     MatCardModule,
     MatFormFieldModule,
-    FormsModule
+    FormsModule,
+    CommonModule,
+    MatCardModule,
+    MatButtonModule,
+    MatIconModule,
+    RatingModule.forRoot(),
   ],
   providers: [],
   bootstrap: [LoginComponent]
