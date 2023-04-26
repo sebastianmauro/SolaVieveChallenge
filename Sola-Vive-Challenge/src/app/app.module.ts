@@ -7,16 +7,18 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatDialogModule } from '@angular/material/dialog';
 import { LoginComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MessageComponent } from './message/message.component';
+import { popUpComponent } from './popUp/popUp.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import {MatIconModule} from '@angular/material/icon';
 import { RatingModule } from 'ngx-bootstrap/rating';
+import { FiveStarsComponent } from './five-stars/five-stars.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
-    MessageComponent
+    popUpComponent,
+    FiveStarsComponent
   ],
   imports: [
     BrowserModule,

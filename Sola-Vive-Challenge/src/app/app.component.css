@@ -1,0 +1,39 @@
+.h1{
+    display: flex;
+    position: absolute;
+    width: 469px;
+    height: 29px;
+    left: 485px;
+    top: 310px;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: center;
+
+    color: #273040;
+}
+.comment{
+    margin-top: 5%;
+}
+
+.button{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 14px 20px;
+    gap: 10px;
+
+    position: absolute;
+    width: 500px;
+    height: 48px;
+    left: 628px;
+    top: 1245px;
+
+    /* Sola Green */
+    background: #11C4B0;
+    border-radius: 80px;
+}

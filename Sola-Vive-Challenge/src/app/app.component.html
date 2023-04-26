@@ -1,27 +1,23 @@
 <mat-card>
-  <mat-card-header>
-      <mat-card-title>Example Login Form</mat-card-title>
-  </mat-card-header>
-      <mat-card-content>
-          <form>
-              <mat-form-field>
-                  <input  matInput  placeholder="your email" [(ngModel)]="email"  type="email" name="email"  required>
-              </mat-form-field>
-              <mat-form-field>
-                  <input  matInput  placeholder="your password" [(ngModel)]="password"  type="password"  name="password"  required>
-              </mat-form-field>
-          </form>
-      </mat-card-content>
-  <mat-card-actions>
-      <button  mat-raised-button (click)="login()"  color="primary">Login</button>
-  </mat-card-actions>
+    <mat-card-header>
+        <mat-card-title>Leave a feedback</mat-card-title>
+    </mat-card-header>
+    <app-five-stars [text] = "firstRateText"></app-five-stars>
+    <app-five-stars [text] = "secondRateText"></app-five-stars>
+    <app-five-stars [text] = "thirdRateText"></app-five-stars>
 </mat-card>
 
-<rating  style="color: #11C4B0;font-size: 40px;" [(ngModel)]="rate" [max]="max" [readonly]="isReadonly">
-</rating>
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Please leave a comment about your experience below:</mat-card-title>
+    </mat-card-header>
 
-<div class="card">
-    <pre class="card-block card-header" style="margin:15px 0;">
-    Rate: <b>{{rate}}</b>
-    </pre>
-</div>
+    <div class = "comment">
+        <mat-form-field>
+            <input  matInput  placeholder="Type your comments here..." [(ngModel)]="comment"  type="text" name="commentBox"  required>
+        </mat-form-field>
+        <mat-card-actions>
+            <button  mat-flat-button color="#11C4B0" (click)="send()"  color="primary">SEED FEEDBACK</button>
+        </mat-card-actions>
+    </div>
+</mat-card>
