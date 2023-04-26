@@ -11,7 +11,9 @@ import { MessageComponent } from './message/message.component';
 export class LoginComponent {
   public  email:  string  =  "";
   public  password:  string  =  "";
-
+  public max = 5;
+  public rate = 2;
+  public isReadonly = false;
   constructor(private  dialog:  MatDialog, private  router:  Router) { }
     login(){
         if(this.email  ===  "email@email.com"  &&  this.password  === "p@ssw0rd")
