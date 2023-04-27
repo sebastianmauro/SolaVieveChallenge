@@ -1,7 +1,7 @@
 import { Component, OnInit } from  '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { MessageComponent } from './message/message.component';
+import { popUpComponent } from './popUp/popUp.component';
 
 @Component({
   selector: 'app-root',
@@ -9,22 +9,18 @@ import { MessageComponent } from './message/message.component';
   styleUrls: ['./app.component.css']
 })
 export class LoginComponent {
-  public  email:  string  =  "";
-  public  password:  string  =  "";
-  public max = 5;
-  public rate = 2;
-  public isReadonly = false;
-  constructor(private  dialog:  MatDialog, private  router:  Router) { }
-    login(){
-        if(this.email  ===  "email@email.com"  &&  this.password  === "p@ssw0rd")
-        {
-            this.router.navigate(['success']);
-        }
-        else
-        {
-            this.dialog.open(MessageComponent,{ data: {
-            message:  "Error!!!"
-            }});
-        }
+  public comment: string = "";
+  public firstRateText: string;
+  public secondRateText: string;
+  public thirdRateText: string;
+  constructor(private  dialog:  MatDialog, private  router:  Router) {
+    this.firstRateText="Rate your experience from 0 to 5 stars:"
+    this.secondRateText="How satisfied are you with the payment process?"
+    this.thirdRateText="How satisfied are you with our customer service?"
+  }
+    send(){
+      this.dialog.open(popUpComponent,{ data: {
+        message:  "success!!!"
+      }});
     }
 }

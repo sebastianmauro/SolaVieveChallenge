@@ -1,0 +1,59 @@
+.h1{
+    display: flex;
+    position: absolute;
+    width: 469px;
+    height: 29px;
+    left: 485px;
+    top: 310px;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: center;
+
+    color: #273040;
+}
+.comment{
+    margin-top: 5%;
+}
+
+.send-button{
+    display: flex;
+    border: none;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 20vh;
+    height: 6vh;
+    /* Sola Green */
+    background: #11C4B0 !important;
+    border-radius: 80px;
+
+}
+
+::ng-deep .mat-mdc-card{
+    background: #E5E5E5 !important;
+}
+.conteiner-button{
+    justify-content: center;
+}
+.comments-input{
+    color: black;
+    display: flex;
+    justify-content: center;
+}
+::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled){
+    color: black;
+    background-color: #E5E5E5;
+    width: 80vh;
+}
+.input-text{
+    color: rgb(0, 0, 0) !important;
+}
+.cualquierea{
+    display: flex;
+    justify-content: center;
+}
