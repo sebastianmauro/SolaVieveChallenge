@@ -1,0 +1,12 @@
+.card-star{
+    height: 15vh;
+}
+.star{
+    color: #11C4B0;
+    font-size: 500%;
+    justify-content: center !important;
+    display: flex !important;
+}
+.text-star{
+    text-align: center;
+}

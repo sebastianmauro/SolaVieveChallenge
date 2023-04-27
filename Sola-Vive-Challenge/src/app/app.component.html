@@ -8,16 +8,16 @@
 </mat-card>
 
 <mat-card>
-    <mat-card-header>
+    <mat-card-header class="cualquierea">
         <mat-card-title>Please leave a comment about your experience below:</mat-card-title>
     </mat-card-header>
-
-    <div class = "comment">
+    <div class="comments-input">
         <mat-form-field>
-            <input  matInput  placeholder="Type your comments here..." [(ngModel)]="comment"  type="text" name="commentBox"  required>
+            <input  matInput class="input-text" placeholder="Type your comments here..." [(ngModel)]="comment"  type="text" name="commentBox"  required>
         </mat-form-field>
-        <mat-card-actions>
-            <button  mat-flat-button color="#11C4B0" (click)="send()"  color="primary">SEED FEEDBACK</button>
-        </mat-card-actions>
     </div>
+    <mat-card-actions class="conteiner-button">
+        <button class="send-button" (click)="send()">SEED FEEDBACK</button>
+    </mat-card-actions>
+
 </mat-card>
