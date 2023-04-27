@@ -53,6 +53,9 @@
 .input-text{
     color: rgb(0, 0, 0) !important;
 }
+.input-text::placeholder{
+    color: rgb(0, 0, 0) !important;
+}
 .cualquierea{
     display: flex;
     justify-content: center;
