@@ -3,6 +3,7 @@ import {MatDialogRef, MAT_DIALOG_DATA, MatDialog} from  '@angular/material/dialo
 
 
 @Component({
+selector: 'popUp',
 templateUrl:  'popUp.component.html'
 })
 export  class  popUpComponent {

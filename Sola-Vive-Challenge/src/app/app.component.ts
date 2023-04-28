@@ -21,6 +21,8 @@ export class LoginComponent {
     send(){
       this.dialog.open(popUpComponent,{ data: {
         message:  "success!!!"
-      }});
+      },
+      width: "40%",
+    panelClass:"modal-success"});
     }
 }
