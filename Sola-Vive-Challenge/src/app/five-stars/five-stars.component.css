@@ -1,3 +1,17 @@
+.main-star{
+    text-align: center;
+    position: relative;
+    margin-bottom: 55px;
+}
+.main-star::after{
+    width: 100%;
+    left: 0;
+    content: "";
+    height: 1px;
+    background-color: #D3D3D3;
+    position: absolute;
+    bottom: -25px;
+}
 .card-star{
     height: 15vh;
 }
@@ -7,6 +21,12 @@
     justify-content: center !important;
     display: flex !important;
 }
+.stars-selected{
+    color: #11C4B0;
+}
+.stars-not-selected{
+    color: #D3D3D3;
+}
 .text-star{
-    text-align: center;
+    margin-bottom: 30px;
 }
