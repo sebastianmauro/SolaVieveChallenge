@@ -1,6 +1,6 @@
+<ng-template #noneBorderStar let-i="index" let-v="value"> <span class="stars-{{i < v ? 'selected' : 'not-selected'}}">{{i < v ? '&#9733;' : '&#9733;'}}</span></ng-template>
 <mat-card class="card-star">
     <h1 class="text-star">{{text}}</h1>
     <rating  class="star" [(ngModel)]="rate" [customTemplate]="noneBorderStar" [max]="max" [readonly]="isReadonly">
     </rating>
 </mat-card>
-<ng-template #noneBorderStar let-index="index" let-value="value"><div style="display: flex;"  *ngIf="index < value">{{'&#9733;'}}</div><div style="color:blueviolet"  *ngIf="index >= value">{{'&#9733;'}}</div></ng-template>

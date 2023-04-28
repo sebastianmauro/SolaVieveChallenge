@@ -1,7 +1,8 @@
 <mat-card>
-    <mat-card-header>
-        <mat-card-title>Leave a feedback</mat-card-title>
+    <mat-card-header class="header">
+        <img src="./assets/icons/SolaVieve-logo.svg">
     </mat-card-header>
+    <mat-card-title class="title">Leave a feedback!</mat-card-title>
     <app-five-stars [text] = "firstRateText"></app-five-stars>
     <app-five-stars [text] = "secondRateText"></app-five-stars>
     <app-five-stars [text] = "thirdRateText"></app-five-stars>
@@ -13,7 +14,7 @@
     </mat-card-header>
     <div class="comments-input">
         <mat-form-field>
-            <input  matInput class="input-text" placeholder="Type your comments here..." [(ngModel)]="comment"  type="text" name="commentBox"  required>
+            <input  matInput class="input-text" placeholder="Type your comments here..." [(ngModel)]="comment"  type="text" name="commentBox">
         </mat-form-field>
     </div>
     <mat-card-actions class="conteiner-button">

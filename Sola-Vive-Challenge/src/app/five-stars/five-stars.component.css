@@ -10,3 +10,9 @@
 .text-star{
     text-align: center;
 }
+.stars-selected{
+    color: #11C4B0;
+}
+.stars-not-selected{
+    color: #D3D3D3;
+}
