@@ -1,7 +1,7 @@
 import { Component, OnInit } from  '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { popUpComponent } from './popUp/popUp.component';
+import { popUpComponent } from './components/popUp/popUp.component';
 
 @Component({
   selector: 'app-root',
