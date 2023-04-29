@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-five-stars',
@@ -6,6 +6,7 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./five-stars.component.css']
 })
 export class FiveStarsComponent {
+  @Output() changeRate = new EventEmitter<number>();
   @Input() max = 5;
   @Input() min = 0;
   public rate: number;
@@ -14,5 +15,7 @@ export class FiveStarsComponent {
   constructor() { 
     this.rate = this.min;
   }
-
+  setRate(){
+    this.changeRate.emit(this.rate)
+  }
 }
