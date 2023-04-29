@@ -13,6 +13,9 @@ import { CommonModule } from '@angular/common';
 import {MatIconModule} from '@angular/material/icon';
 import { RatingModule } from 'ngx-bootstrap/rating';
 import { FiveStarsComponent } from './five-stars/five-stars.component';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
@@ -34,6 +37,8 @@ import { FiveStarsComponent } from './five-stars/five-stars.component';
     MatButtonModule,
     MatIconModule,
     RatingModule.forRoot(),
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirestore(() => getFirestore()),
   ],
   providers: [],
   bootstrap: [LoginComponent]
