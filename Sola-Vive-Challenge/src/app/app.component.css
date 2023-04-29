@@ -1,75 +1,76 @@
+::ng-deep :root {
+    --black: #000000;
+    --ligthBlue:#11C5B0;
+    --white: #FFFFFF;
+    --gray: #DEDEDE;
+    --backgroundGray: #E5E5E5;
+    --popUpTextColor: #979797;
+    --placeholderTextColor: #C8C8C8;
+    --mainTitleColor: #273040;
+}
+
 ::ng-deep .mdc-line-ripple {
     display: none;
 }
-::ng-deep .mat-form-field-ripple{
+
+::ng-deep .mat-form-field-ripple {
     display: none;
 }
+
 ::ng-deep .mdc-text-field .mdc-text-field__input {
-    caret-color: #000000 !important;
+    caret-color: var(--black) !important;
 }
-.header{
-    border-bottom: 2px solid #DEDEDE;
+
+.header {
+    border-bottom: 2px solid var(--gray);
     margin-bottom: 55px;
 }
 
-::ng-deep .modal-success .mdc-dialog__surface{
-    background: #FFFFFF !important;
+::ng-deep .modal-success .mdc-dialog__surface {
+    background: var(--white) !important;
     padding: 32px !important;
 }
 
-::ng-deep .modal-success mat-dialog-content{
+::ng-deep .modal-success mat-dialog-content {
     display: flex !important;
     align-items: center !important;
     flex-direction: column !important;
     padding: 0 !important;
     gap: 72px !important;
     margin-bottom: 80px !important;
-    color: #979797 !important;
+    color: var(--popUpTextColor) !important;
 }
-::ng-deep .modal-success mat-dialog-content h1{
+
+::ng-deep .modal-success mat-dialog-content h1 {
     display: flex !important;
     align-items: center !important;
     flex-direction: column !important;
     font-size: 18px !important;
 }
-::ng-deep .modal-success mat-dialog-actions{
+
+::ng-deep .modal-success mat-dialog-actions {
     display: flex !important;
     justify-content: center !important;
 }
-::ng-deep .modal-success mat-dialog-actions button{
-    background-color: #11C4B0 !important;
-    color: #FFFFFF !important;
+
+::ng-deep .modal-success mat-dialog-actions button {
+    background-color: var(--ligthBlue) !important;
+    color: var(--white) !important;
     padding: 21px 29px !important;
     border-radius: 80px;
 }
 
-.panel{
+.panel {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.h1{
-    display: flex;
-    position: absolute;
-    width: 469px;
-    height: 29px;
-    left: 485px;
-    top: 310px;
 
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 24px;
-    line-height: 29px;
-    text-align: center;
-
-    color: #273040;
-}
-.comment{
+.comment {
     margin-top: 5%;
 }
 
-.send-button{
+.send-button {
     display: flex;
     border: none;
     flex-direction: row;
@@ -78,61 +79,63 @@
     font-size: small;
     width: 20vh;
     height: 6vh;
-    /* Sola Green */
-    background: #11C4B0;
+    background: var(--ligthBlue);
     font-style: normal;
-    color:#FFFFFF;
+    color:var(--white);
     border-radius: 80px;
-
 }
 
-::ng-deep .mat-mdc-card{
+::ng-deep .mat-mdc-card {
     box-shadow: none !important;
-    background: #E5E5E5 !important;
+    background: var(--backgroundGray) !important;
 }
-.conteiner-button{
+
+.container-button {
     justify-content: center;
 }
-.comments-input{
-    color: black;
+
+.comment-input {
+    color: var(--black);
     display: flex;
     justify-content: center;
 }
-::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled){
-    color: black;
-    background-color: #E5E5E5;
-    width: 80vh;
+
+::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    color: var(--black);
+    background-color: var(--backgroundGray);
+    width: 100vh;
 }
-.input-text:focus-visible{
+
+.input-text:focus-visible {
     outline: none !important;
 }
-.input-text{
-    resize: none;
 
+.input-text {
+    resize: none;
     padding: 16px 22px;
     box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.25) !important;
     border-radius: 9px;
-    width: 100% !important;
     height: 20vh !important;
-    color: rgb(0, 0, 0) !important;
+    color: var(--black) !important;
 }
-.input-text::placeholder{
-    display: flex !important;
-    color:  #C8C8C8 !important;
+
+.input-text::placeholder {
+    display: flex;
+    color: var(--placeholderTextColor) !important;
 }
-.cualquierea{
+
+.comment-title {
     display: flex;
     justify-content: center;
 }
-.title{
+
+.title {
     margin-bottom: 77px;
     text-align: center;
     font-weight: 700;
     font-size: 48px;
     line-height: 59px;
-    
-    color: #273040;
-    
-    display: flex !important;
-    justify-content: center !important;
+    color: var(--mainTitleColor);   
+    display: flex;
+    justify-content: center;
 }
