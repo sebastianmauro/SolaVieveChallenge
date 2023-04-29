@@ -1,4 +1,4 @@
-import { Component, OnInit } from  '@angular/core';
+import { Component, ErrorHandler, OnInit } from  '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { FeedbackSubject } from 'src/enums/feedbackSubject';
@@ -37,17 +37,32 @@ export class LoginComponent {
         experienceRate: this.experienceRate,
         paymentProcessRate: this.paymentRate,
         customerServiceRate: this.customerServiceRate,
-        comment:"five stars on everything"
+        comment:this.comment
       };
-      const response = await this.feedbackService.saveFeedback(feedbackToSend);
-      console.log(response);
       this.openSuccesPopUp(); 
+      /*this.feedbackService.saveFeedback(feedbackToSend)
+      .then(response=>{
+        console.log(response);
+        this.openSuccesPopUp(); 
+      }).catch(error=>{
+        console.log(error);
+        this.errorHandler(error);
+      });*/
     }
 
     openSuccesPopUp(){
       this.dialog.open(popUpComponent,
         { 
           data: { message:  "success!!!"},
+          width: "40%",
+          panelClass:"modal-success"
+        }
+      );
+    }
+    errorHandler(error:any){
+      this.dialog.open(popUpComponent,
+        { 
+          data: { message: "success!!!"},
           width: "40%",
           panelClass:"modal-success"
         }
