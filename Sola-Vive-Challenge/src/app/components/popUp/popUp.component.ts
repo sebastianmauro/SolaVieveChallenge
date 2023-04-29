@@ -1,7 +1,7 @@
 import { Component, Inject } from  '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from  '@angular/material/dialog';
-import { NOT_OK_IMG_SOURCE, OK_IMG_SOURCE } from 'src/app/statics/imgSources';
-import { NOT_OK_FIRST_SENTENCE, NOT_OK_SECOND_SENTENCE, OK_FIRST_SENTENCE, OK_SECOND_SENTECE } from 'src/app/statics/sentences';
+import { NOT_OK_IMG_SOURCE, OK_IMG_SOURCE } from 'src/app/constants/imgSources';
+import { NOT_OK_FIRST_SENTENCE, NOT_OK_SECOND_SENTENCE, OK_FIRST_SENTENCE, OK_SECOND_SENTECE } from 'src/app/constants/sentences';
 import { ResponseCode } from 'src/enums/responseCodes';
 
 @Component({

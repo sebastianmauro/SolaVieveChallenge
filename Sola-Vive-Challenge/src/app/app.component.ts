@@ -1,6 +1,6 @@
 import { Component } from  '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { CUSTOMER_SERVICE_RATE_TITLE, EXPERIENCE_RATE_TITLE, PAYMENT_RATE_TITLE } from './statics/sentences';
+import { CUSTOMER_SERVICE_RATE_TITLE, EXPERIENCE_RATE_TITLE, PAYMENT_RATE_TITLE } from './constants/sentences';
 import { FeedbackSubject } from 'src/enums/feedbackSubject';
 import { ResponseCode } from 'src/enums/responseCodes';
 import { popUpComponent } from './components/popUp/popUp.component';
