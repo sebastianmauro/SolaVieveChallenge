@@ -2,8 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ResponseCode } from '../../../enums/responseCodes';
 import { popUpComponent } from './popUp.component';
-import { NOT_OK_FIRST_SENTENCE, NOT_OK_SECOND_SENTENCE, OK_FIRST_SENTENCE, OK_SECOND_SENTECE } from '../../statics/sentences';
-import { NOT_OK_IMG_SOURCE, OK_IMG_SOURCE } from '../../statics/imgSources';
+import { NOT_OK_FIRST_SENTENCE, NOT_OK_SECOND_SENTENCE, OK_FIRST_SENTENCE, OK_SECOND_SENTECE } from '../../constants/sentences';
+import { NOT_OK_IMG_SOURCE, OK_IMG_SOURCE } from '../../constants/imgSources';
 
 describe('popUpComponent', () => {
   const ErrorData = {status: ResponseCode.InternalServerError};

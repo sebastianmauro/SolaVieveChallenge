@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { RatingAttibutes } from 'src/enums/ratingAttributes';
 
 @Component({
   selector: 'app-five-stars',
@@ -7,14 +8,11 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class FiveStarsComponent {
   @Output() changeRate = new EventEmitter<number>();
-  @Input() max = 5;
-  @Input() min = 0;
-  public rate: number;
-  public isReadonly = false;
   @Input() text = '';
-  constructor() { 
-    this.rate = this.min;
-  }
+  public rate: number = RatingAttibutes.RateBeginnigValue;
+  public max = RatingAttibutes.MaxRateValue;
+  public isReadonly = false;
+
   setRate(){
     this.changeRate.emit(this.rate)
   }
