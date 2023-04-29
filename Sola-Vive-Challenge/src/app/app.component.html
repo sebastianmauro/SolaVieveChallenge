@@ -5,9 +5,9 @@
     <div class="panel">
         <mat-card-title class="title">Leave a feedback!</mat-card-title>
         <div>
-            <app-five-stars [text] = "firstRateText"></app-five-stars>
-            <app-five-stars [text] = "secondRateText"></app-five-stars>
-            <app-five-stars [text] = "thirdRateText"></app-five-stars>
+            <app-five-stars [text] = "experienceRateText" (changeRate)="setRateOf($event,feedbackSubject.Experience)"></app-five-stars>
+            <app-five-stars [text] = "paymentRateText" (changeRate)="setRateOf($event,feedbackSubject.Payments)"></app-five-stars>
+            <app-five-stars [text] = "customerServiceRateText" (changeRate)="setRateOf($event,feedbackSubject.CustomerService)"></app-five-stars>
         </div>
     </div>
 </mat-card>
