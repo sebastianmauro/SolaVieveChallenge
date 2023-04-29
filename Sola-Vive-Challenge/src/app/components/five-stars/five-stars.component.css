@@ -1,32 +1,44 @@
-.main-star{
+::ng-deep :root {
+    --ligthBlue:#11C5B0;
+    --white: #FFFFFF;
+    --gray: #D3D3D3;
+}
+
+.rating-component {
     text-align: center;
     position: relative;
     margin-bottom: 55px;
 }
-.main-star::after{
+
+.rating-component::after {
     width: 100%;
     left: 0;
     content: "";
     height: 1px;
-    background-color: #D3D3D3;
+    background-color: var(--gray);
     position: absolute;
     bottom: -25px;
 }
-.card-star{
+
+.rating-card {
     height: 15vh;
 }
-.star{
-    color: #11C4B0;
+
+.star {
+    color: var(--ligthBlue);
     font-size: 500%;
     justify-content: center !important;
     display: flex !important;
 }
-.stars-selected{
-    color: #11C4B0;
+
+.stars-selected {
+    color: var(--ligthBlue);
 }
-.stars-not-selected{
-    color: #D3D3D3;
+
+.stars-not-selected {
+    color:var(--gray);
 }
-.text-star{
+
+.rating-title {
     margin-bottom: 30px;
 }
