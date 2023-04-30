@@ -12,7 +12,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { CUSTOMER_SERVICE_RATE_TITLE, EXPERIENCE_RATE_TITLE, PAYMENT_RATE_TITLE } from './constants/sentences';
 import { FeedbackSubject } from 'src/enums/feedbackSubject';
 
-describe('LoginComponent', () => {
+describe('AppComponent', () => {
   let appComponent: MainComponent;
   let fixture: ComponentFixture<MainComponent>;
   let matDialogService: jasmine.SpyObj<MatDialog>;
@@ -73,12 +73,12 @@ describe('LoginComponent', () => {
   });
 
   it('if nothing goes wrong when sends openSuccesPopUp sholud be call', async () => {
-    const spy = spyOn(appComponent, 'openSuccesPopUp');
-    const p1 = Promise.resolve('moked ok response');
-    feedbackServiceSpy.saveFeedback.and.returnValue(p1);
+    const spyOpenSuccesPopUp = spyOn(appComponent, 'openSuccesPopUp');
+    const okResponsePromise = Promise.resolve('moked ok response');
+    feedbackServiceSpy.saveFeedback.and.returnValue(okResponsePromise);
     await appComponent.send();
-    expect(spy).toHaveBeenCalled();
-    spy.calls.reset();
+    expect(spyOpenSuccesPopUp).toHaveBeenCalled();
+    spyOpenSuccesPopUp.calls.reset();
   });
 
   it('if something goes wrong when sends openErrorOccurredPopUp sholud be call', async () => {
