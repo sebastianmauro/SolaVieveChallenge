@@ -9,7 +9,7 @@ export class FeedbackService {
 
   constructor(private firestore: Firestore) { }
 
-  saveFeedback(aFeedback: Feedback){
+  saveFeedback(aFeedback: Feedback): any{
     const feedbacksCollectionRefence = collection(this.firestore, 'feedbacks');
     return addDoc(feedbacksCollectionRefence, aFeedback);
   }

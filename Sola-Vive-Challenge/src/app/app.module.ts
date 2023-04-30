@@ -5,7 +5,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatDialogModule } from '@angular/material/dialog';
-import { LoginComponent } from './app.component';
+import { MainComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { popUpComponent } from './components/popUp/popUp.component';
 import { FormsModule } from '@angular/forms';
@@ -19,7 +19,7 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
-    LoginComponent,
+    MainComponent,
     popUpComponent,
     FiveStarsComponent
   ],
@@ -41,6 +41,6 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
     provideFirestore(() => getFirestore()),
   ],
   providers: [],
-  bootstrap: [LoginComponent]
+  bootstrap: [MainComponent]
 })
 export class AppModule { }

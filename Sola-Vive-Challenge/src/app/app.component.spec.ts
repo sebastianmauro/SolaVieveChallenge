@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatDialog } from '@angular/material/dialog';
 import { MockComponent } from 'ng-mocks';
-import { LoginComponent } from './app.component';
+import { MainComponent } from './app.component';
 import { FeedbackService } from './services/feedback.service';
 import { MatCardModule } from '@angular/material/card';
 import { FiveStarsComponent } from './components/five-stars/five-stars.component';
@@ -12,11 +12,13 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { CUSTOMER_SERVICE_RATE_TITLE, EXPERIENCE_RATE_TITLE, PAYMENT_RATE_TITLE } from './constants/sentences';
 import { FeedbackSubject } from 'src/enums/feedbackSubject';
 import { of } from 'rxjs';
+import { DocumentReference } from '@angular/fire/firestore/firebase';
 
 
 describe('LoginComponent', () => {
-  let component: LoginComponent;
-  let fixture: ComponentFixture<LoginComponent>;
+  let feedbackServiceSpy: jasmine.SpyObj<FeedbackService>;
+  let component: MainComponent;
+  let fixture: ComponentFixture<MainComponent>;
   let matDialogService: jasmine.SpyObj<MatDialog>;
   matDialogService = jasmine.createSpyObj<MatDialog>('MatDialog', ['open']);
   let feedbackInjectedStub = {
@@ -24,23 +26,25 @@ describe('LoginComponent', () => {
   }
 
   beforeEach(async () => {
+    feedbackServiceSpy = jasmine.createSpyObj('feedbackServiceSpy', ['saveFeedback']);
     await TestBed.configureTestingModule({
-      declarations: [ LoginComponent, MockComponent(FiveStarsComponent) ],
+      declarations: [ MainComponent, MockComponent(FiveStarsComponent) ],
       imports:[MatCardModule, MatFormFieldModule, FormsModule, MatInputModule, NoopAnimationsModule],
       providers: [
+        MainComponent,
         {
           provide: MatDialog,
           useValue: matDialogService,
         },
         {
           provide: FeedbackService,
-          useValue: feedbackInjectedStub,
+          useValue: feedbackServiceSpy,
         },
       ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(LoginComponent);
+    fixture = TestBed.createComponent(MainComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -70,18 +74,22 @@ describe('LoginComponent', () => {
     expect(component.customerServiceRate).toBe(aRate);
   });
 
-  /*it('if nothing goes wrong when sends openSuccesPopUp sholud be call', () => {
-    spyOn(component, 'openSuccesPopUp');
-    component.send();
-    expect(component.openSuccesPopUp).toHaveBeenCalled();
-  });*/
+  it('if nothing goes wrong when sends openSuccesPopUp sholud be call', async () => {
+    const spy = spyOn(component, 'openSuccesPopUp');
+    const p1 = Promise.resolve('moked ok response');
+    feedbackServiceSpy.saveFeedback.and.returnValue(p1);
+    await component.send();
+    expect(spy).toHaveBeenCalled();
+    spy.calls.reset();
+    feedbackServiceSpy.saveFeedback.calls.reset();
+  });
 
-  /*it('if something goes wrong when sends openErrorOccurredPopUp sholud be call', () => {
-    spyOn(component, 'openErrorOccurredPopUp');
-    const xService = fixture.debugElement.injector.get(FeedbackService);
-    const mockCall = spyOn(xService,'saveFeedback').and.callFake(()=> of("gg"));
-    component.send();
-    expect(component.openErrorOccurredPopUp).toHaveBeenCalled();
-    mockCall.calls.reset();
-  });*/
+  it('if something goes wrong when sends openErrorOccurredPopUp sholud be call', async () => {
+    const spy = spyOn(component, 'openErrorOccurredPopUp');
+    const p1 = Promise.reject(new Error("fail"));
+    feedbackServiceSpy.saveFeedback.and.returnValue(p1);
+    await component.send();
+    expect(spy).toHaveBeenCalled();
+    spy.calls.reset();
+  });
 });

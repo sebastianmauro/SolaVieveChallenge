@@ -14,7 +14,7 @@ import { RatingAttibutes } from 'src/enums/ratingAttributes';
   styleUrls: ['./app.component.css']
 })
 
-export class LoginComponent {
+export class MainComponent {
 
   public comment: string = "";
   public experienceRateText: string;
@@ -46,12 +46,10 @@ export class LoginComponent {
       comment:this.comment
     };
 
-    this.feedbackService.saveFeedback(feedbackToSend)
-    .then(response=>{
-      console.log(response);
-      console.log("response");
+    await this.feedbackService.saveFeedback(feedbackToSend)
+    .then((response: any)=>{
       this.openSuccesPopUp(); 
-    }).catch(error=>{
+    }).catch((error: any)=>{
       this.errorHandler(error);
     });
   }
