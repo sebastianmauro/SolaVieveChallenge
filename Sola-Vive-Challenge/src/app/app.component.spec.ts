@@ -11,22 +11,16 @@ import { MatInputModule } from '@angular/material/input';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { CUSTOMER_SERVICE_RATE_TITLE, EXPERIENCE_RATE_TITLE, PAYMENT_RATE_TITLE } from './constants/sentences';
 import { FeedbackSubject } from 'src/enums/feedbackSubject';
-import { of } from 'rxjs';
-import { DocumentReference } from '@angular/fire/firestore/firebase';
-
 
 describe('LoginComponent', () => {
-  let feedbackServiceSpy: jasmine.SpyObj<FeedbackService>;
-  let component: MainComponent;
+  let appComponent: MainComponent;
   let fixture: ComponentFixture<MainComponent>;
   let matDialogService: jasmine.SpyObj<MatDialog>;
+  let feedbackServiceSpy: jasmine.SpyObj<FeedbackService>;
+  feedbackServiceSpy = jasmine.createSpyObj('feedbackServiceSpy', ['saveFeedback']);
   matDialogService = jasmine.createSpyObj<MatDialog>('MatDialog', ['open']);
-  let feedbackInjectedStub = {
-    saveFeedback():(Promise<any>) {return new Promise(()=>{"moked Data"})} 
-  }
 
   beforeEach(async () => {
-    feedbackServiceSpy = jasmine.createSpyObj('feedbackServiceSpy', ['saveFeedback']);
     await TestBed.configureTestingModule({
       declarations: [ MainComponent, MockComponent(FiveStarsComponent) ],
       imports:[MatCardModule, MatFormFieldModule, FormsModule, MatInputModule, NoopAnimationsModule],
@@ -45,51 +39,54 @@ describe('LoginComponent', () => {
     .compileComponents();
 
     fixture = TestBed.createComponent(MainComponent);
-    component = fixture.componentInstance;
+    appComponent = fixture.componentInstance;
     fixture.detectChanges();
   });
 
+  afterEach(()=>{
+    feedbackServiceSpy.saveFeedback.calls.reset();
+  });
+
   it('should create correctly', () => {
-    expect(component).toBeTruthy();
-    expect(component.experienceRateText).toBe(EXPERIENCE_RATE_TITLE);
-    expect(component.paymentRateText).toBe(PAYMENT_RATE_TITLE);
-    expect(component.customerServiceRateText).toBe(CUSTOMER_SERVICE_RATE_TITLE);
+    expect(appComponent).toBeTruthy();
+    expect(appComponent.experienceRateText).toBe(EXPERIENCE_RATE_TITLE);
+    expect(appComponent.paymentRateText).toBe(PAYMENT_RATE_TITLE);
+    expect(appComponent.customerServiceRateText).toBe(CUSTOMER_SERVICE_RATE_TITLE);
   });
 
   it('experience rate sholud be set correctly', () => {
     const aRate = 5;
-    component.setRateOf(aRate,FeedbackSubject.Experience);
-    expect(component.experienceRate).toBe(aRate);
+    appComponent.setRateOf(aRate,FeedbackSubject.Experience);
+    expect(appComponent.experienceRate).toBe(aRate);
   });
 
   it('payment rate sholud be set correctly', () => {
     const aRate = 5;
-    component.setRateOf(aRate,FeedbackSubject.Payments);
-    expect(component.paymentRate).toBe(aRate);
+    appComponent.setRateOf(aRate,FeedbackSubject.Payments);
+    expect(appComponent.paymentRate).toBe(aRate);
   });
 
   it('customer service rate sholud be set correctly', () => {
     const aRate = 5;
-    component.setRateOf(aRate,FeedbackSubject.CustomerService);
-    expect(component.customerServiceRate).toBe(aRate);
+    appComponent.setRateOf(aRate,FeedbackSubject.CustomerService);
+    expect(appComponent.customerServiceRate).toBe(aRate);
   });
 
   it('if nothing goes wrong when sends openSuccesPopUp sholud be call', async () => {
-    const spy = spyOn(component, 'openSuccesPopUp');
+    const spy = spyOn(appComponent, 'openSuccesPopUp');
     const p1 = Promise.resolve('moked ok response');
     feedbackServiceSpy.saveFeedback.and.returnValue(p1);
-    await component.send();
+    await appComponent.send();
     expect(spy).toHaveBeenCalled();
     spy.calls.reset();
-    feedbackServiceSpy.saveFeedback.calls.reset();
   });
 
   it('if something goes wrong when sends openErrorOccurredPopUp sholud be call', async () => {
-    const spy = spyOn(component, 'openErrorOccurredPopUp');
-    const p1 = Promise.reject(new Error("fail"));
-    feedbackServiceSpy.saveFeedback.and.returnValue(p1);
-    await component.send();
-    expect(spy).toHaveBeenCalled();
-    spy.calls.reset();
+    const appComponentSpy = spyOn(appComponent, 'openErrorOccurredPopUp');
+    const aRejectedPromise = Promise.reject(new Error("mocked test error"));
+    feedbackServiceSpy.saveFeedback.and.returnValue(aRejectedPromise);
+    await appComponent.send();
+    expect(appComponentSpy).toHaveBeenCalled();
+    appComponentSpy.calls.reset();
   });
 });
