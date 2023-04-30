@@ -14,5 +14,6 @@ Requirements:
   run ng test to run the tests
  
  Feedbacks are stored in a fireBase collection named 'feedbacks'
+ click on print on console button to verify the feedbacks are been stored on firebase
 
 
