@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { CUSTOMER_SERVICE_RATE_TITLE, EXPERIENCE_RATE_TITLE, GET_COLLECTION_ERROR_LOG, PAYMENT_RATE_TITLE } from './constants/sentences';
 import { FeedbackSubject } from 'src/enums/feedbackSubject';
+import { delay } from 'rxjs';
 
 describe('AppComponent', () => {
   let appComponent: MainComponent;
@@ -92,35 +93,44 @@ describe('AppComponent', () => {
   });
 
   it('when printOnConsole is call, it shoud call console.log', async () => {
+    mockGetFeedbackwithOkPromise(feedbackServiceSpy);
     console.log = jasmine.createSpy("log");
     await appComponent.printOnConsole();
     expect(console.log).toHaveBeenCalled();
   });
 
   it('when printOnConsole is call, it shoud call getFeedback from the service', async () => {
-    const responseContent = [{id: "anId", experienceRate: 5, paymentProcessRate: 5, customerServiceRate: 5, comment: "aCommet"}];
-    const okResponsePromise = Promise.resolve(responseContent);
-    feedbackServiceSpy.getFeedback.and.returnValue(okResponsePromise);
+    mockGetFeedbackwithOkPromise(feedbackServiceSpy);
     await appComponent.printOnConsole();
     expect(feedbackServiceSpy.getFeedback).toHaveBeenCalled();
   });
 
   it('when printOnConsole is call, it shoud print the service result', async () => {
-    const responseContent = [{id: "anId", experienceRate: 5, paymentProcessRate: 5, customerServiceRate: 5, comment: "aCommet"}];
-    const okResponsePromise = Promise.resolve(responseContent);
-    feedbackServiceSpy.getFeedback.and.returnValue(okResponsePromise);
+    const responseContent = mockGetFeedbackwithOkPromise(feedbackServiceSpy);
     console.log = jasmine.createSpy("log");
     await appComponent.printOnConsole();
     expect(console.log).toHaveBeenCalledOnceWith(responseContent);
   });
 
   it('when printOnConsole is call but recives a rejected promise, it shoud print the error on console', async () => {
-    const errorMessage = "mocked test error";
-    const responseError = new Error(errorMessage)
-    const okResponsePromise = Promise.reject(responseError);
-    feedbackServiceSpy.getFeedback.and.returnValue(okResponsePromise);
+    const responseError = mockGetFeedbackWithRejectedPromise(feedbackServiceSpy);
     console.log = jasmine.createSpy("log");
     await appComponent.printOnConsole();
     expect(console.log).toHaveBeenCalledOnceWith(GET_COLLECTION_ERROR_LOG, responseError);
   });
 });
+
+function mockGetFeedbackwithOkPromise(feedbackServiceSpy: jasmine.SpyObj<FeedbackService>) {
+  const responseContent = [{ id: "anId", experienceRate: 5, paymentProcessRate: 5, customerServiceRate: 5, comment: "aCommet" }];
+  const okResponsePromise = Promise.resolve(responseContent);
+  feedbackServiceSpy.getFeedback.and.returnValue(okResponsePromise);
+  return responseContent;
+}
+
+function mockGetFeedbackWithRejectedPromise(feedbackServiceSpy: jasmine.SpyObj<FeedbackService>) {
+  const errorMessage = "mocked test error";
+  const responseError = new Error(errorMessage);
+  const rejectedResponsePromise = Promise.reject(responseError);
+  feedbackServiceSpy.getFeedback.and.returnValue(rejectedResponsePromise);
+  return responseError;
+}
