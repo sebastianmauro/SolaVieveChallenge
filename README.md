@@ -1,9 +1,18 @@
 # SolaVieveChallenge
 in this repository you will find all the code of the front-End developer Challenge
-this is a test on the readme
 
-Angular CLI: 15.2.6
-Node: 16.16.0
-Package Manager: npm 8.14.0
-OS: win32 x64
+Requirements:
+  Angular CLI: 15.2.6
+  Node: 16.16.0
+  Package Manager: npm 8.14.0
+  OS: win32 x64
+  
+ Steps:
+  clone the repository
+  run npm install
+  run ng serve to run the project
+  run ng test to run the tests
+ 
+ Feedbacks are stored in a fireBase collection named 'feedbacks'
+
 
