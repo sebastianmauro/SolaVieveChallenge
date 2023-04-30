@@ -6,6 +6,7 @@ import { ResponseCode } from 'src/enums/responseCodes';
 import { popUpComponent } from './components/popUp/popUp.component';
 import Feedback from './interfaces/feedback.interface';
 import { FeedbackService } from './services/feedback.service';
+import { RatingAttibutes } from 'src/enums/ratingAttributes';
 
 @Component({
   selector: 'app-root',
@@ -20,20 +21,22 @@ export class LoginComponent {
   public paymentRateText: string;
   public customerServiceRateText: string;
   public feedbackSubject = FeedbackSubject;
-  private experienceRate: number = 0;
-  private paymentRate: number = 0;
-  private customerServiceRate: number = 0;
+  public experienceRate: number = RatingAttibutes.RateBeginnigValue;
+  public paymentRate: number = RatingAttibutes.RateBeginnigValue;
+  public customerServiceRate: number = RatingAttibutes.RateBeginnigValue;
 
-  constructor(private  dialog:  MatDialog, private feedbackService: FeedbackService) {
-    this.experienceRateText=EXPERIENCE_RATE_TITLE;
-    this.paymentRateText=PAYMENT_RATE_TITLE;
-    this.customerServiceRateText=CUSTOMER_SERVICE_RATE_TITLE;
+  constructor(private  dialog:  MatDialog, public feedbackService: FeedbackService) {
+    this.experienceRateText = EXPERIENCE_RATE_TITLE;
+    this.paymentRateText = PAYMENT_RATE_TITLE;
+    this.customerServiceRateText = CUSTOMER_SERVICE_RATE_TITLE;
   }
+
   setRateOf(aRate: number, feedBackSubject:number){
-    if(feedBackSubject == FeedbackSubject.Experience) this.experienceRate = aRate;
-    if(feedBackSubject == FeedbackSubject.Payments) this.paymentRate = aRate;
-    if(feedBackSubject == FeedbackSubject.CustomerService) this.customerServiceRate = aRate;
+    if(feedBackSubject === FeedbackSubject.Experience) this.experienceRate = aRate;
+    if(feedBackSubject === FeedbackSubject.Payments) this.paymentRate = aRate;
+    if(feedBackSubject === FeedbackSubject.CustomerService) this.customerServiceRate = aRate;
   }
+
   async send(){
     console.log("sending feedback");
     const feedbackToSend: Feedback = {
@@ -43,14 +46,14 @@ export class LoginComponent {
       comment:this.comment
     };
 
-    this.openSuccesPopUp(); 
-    /*this.feedbackService.saveFeedback(feedbackToSend)
+    this.feedbackService.saveFeedback(feedbackToSend)
     .then(response=>{
       console.log(response);
+      console.log("response");
       this.openSuccesPopUp(); 
     }).catch(error=>{
       this.errorHandler(error);
-    });*/
+    });
   }
 
   openSuccesPopUp(){

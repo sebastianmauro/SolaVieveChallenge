@@ -8,9 +8,9 @@ import { RatingAttibutes } from 'src/enums/ratingAttributes';
 })
 export class FiveStarsComponent {
   @Output() changeRate = new EventEmitter<number>();
-  @Input() text = '';
+  @Input() text:string = '';
   public rate: number = RatingAttibutes.RateBeginnigValue;
-  public max = RatingAttibutes.MaxRateValue;
+  public max: number = RatingAttibutes.MaxRateValue;
   public isReadonly = false;
 
   setRate(){
