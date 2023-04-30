@@ -1,6 +1,7 @@
 ::ng-deep :root {
     --black: #000000;
     --ligthBlue:#11C5B0;
+    --ligthBlueHover:#67c6bb;
     --white: #FFFFFF;
     --gray: #DEDEDE;
     --backgroundGray: #E5E5E5;
@@ -24,6 +25,18 @@
 .header {
     border-bottom: 2px solid var(--gray);
     margin-bottom: 55px;
+    display: flex;
+    align-items: center;
+}
+
+.header button{
+    margin-left: auto;
+    border-radius: 8px;
+    font-size: x-small;   
+}
+
+button:hover{
+    background-color: var(--ligthBlueHover);
 }
 
 ::ng-deep .modal-success .mdc-dialog__surface {

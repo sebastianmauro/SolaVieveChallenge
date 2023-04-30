@@ -1,6 +1,6 @@
 import { Component } from  '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { CUSTOMER_SERVICE_RATE_TITLE, EXPERIENCE_RATE_TITLE, PAYMENT_RATE_TITLE } from './constants/sentences';
+import { CUSTOMER_SERVICE_RATE_TITLE, EXPERIENCE_RATE_TITLE, GET_COLLECTION_ERROR_LOG, PAYMENT_RATE_TITLE } from './constants/sentences';
 import { FeedbackSubject } from 'src/enums/feedbackSubject';
 import { ResponseCode } from 'src/enums/responseCodes';
 import { popUpComponent } from './components/popUp/popUp.component';
@@ -45,12 +45,21 @@ export class MainComponent {
       customerServiceRate: this.customerServiceRate,
       comment:this.comment
     };
-
     await this.feedbackService.saveFeedback(feedbackToSend)
     .then((response: any)=>{
       this.openSuccesPopUp(); 
     }).catch((error: any)=>{
       this.errorHandler(error);
+    });
+  }
+
+  async printOnConsole(){
+    await this.feedbackService.getFeedback()
+    .then((collection: any)=>{
+      console.log(collection);
+    })
+    .catch((error: any)=>{
+      console.log(GET_COLLECTION_ERROR_LOG, error);
     });
   }
 

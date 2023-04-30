@@ -9,7 +9,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { CUSTOMER_SERVICE_RATE_TITLE, EXPERIENCE_RATE_TITLE, PAYMENT_RATE_TITLE } from './constants/sentences';
+import { CUSTOMER_SERVICE_RATE_TITLE, EXPERIENCE_RATE_TITLE, GET_COLLECTION_ERROR_LOG, PAYMENT_RATE_TITLE } from './constants/sentences';
 import { FeedbackSubject } from 'src/enums/feedbackSubject';
 
 describe('AppComponent', () => {
@@ -17,7 +17,7 @@ describe('AppComponent', () => {
   let fixture: ComponentFixture<MainComponent>;
   let matDialogService: jasmine.SpyObj<MatDialog>;
   let feedbackServiceSpy: jasmine.SpyObj<FeedbackService>;
-  feedbackServiceSpy = jasmine.createSpyObj('feedbackServiceSpy', ['saveFeedback']);
+  feedbackServiceSpy = jasmine.createSpyObj('feedbackServiceSpy', ['saveFeedback', 'getFeedback']);
   matDialogService = jasmine.createSpyObj<MatDialog>('MatDialog', ['open']);
 
   beforeEach(async () => {
@@ -45,6 +45,7 @@ describe('AppComponent', () => {
 
   afterEach(()=>{
     feedbackServiceSpy.saveFeedback.calls.reset();
+    feedbackServiceSpy.getFeedback.calls.reset();
   });
 
   it('should create correctly', () => {
@@ -88,5 +89,38 @@ describe('AppComponent', () => {
     await appComponent.send();
     expect(appComponentSpy).toHaveBeenCalled();
     appComponentSpy.calls.reset();
+  });
+
+  it('when printOnConsole is call, it shoud call console.log', async () => {
+    console.log = jasmine.createSpy("log");
+    await appComponent.printOnConsole();
+    expect(console.log).toHaveBeenCalled();
+  });
+
+  it('when printOnConsole is call, it shoud call getFeedback from the service', async () => {
+    const responseContent = [{id: "anId", experienceRate: 5, paymentProcessRate: 5, customerServiceRate: 5, comment: "aCommet"}];
+    const okResponsePromise = Promise.resolve(responseContent);
+    feedbackServiceSpy.getFeedback.and.returnValue(okResponsePromise);
+    await appComponent.printOnConsole();
+    expect(feedbackServiceSpy.getFeedback).toHaveBeenCalled();
+  });
+
+  it('when printOnConsole is call, it shoud print the service result', async () => {
+    const responseContent = [{id: "anId", experienceRate: 5, paymentProcessRate: 5, customerServiceRate: 5, comment: "aCommet"}];
+    const okResponsePromise = Promise.resolve(responseContent);
+    feedbackServiceSpy.getFeedback.and.returnValue(okResponsePromise);
+    console.log = jasmine.createSpy("log");
+    await appComponent.printOnConsole();
+    expect(console.log).toHaveBeenCalledOnceWith(responseContent);
+  });
+
+  it('when printOnConsole is call but recives a rejected promise, it shoud print the error on console', async () => {
+    const errorMessage = "mocked test error";
+    const responseError = new Error(errorMessage)
+    const okResponsePromise = Promise.reject(responseError);
+    feedbackServiceSpy.getFeedback.and.returnValue(okResponsePromise);
+    console.log = jasmine.createSpy("log");
+    await appComponent.printOnConsole();
+    expect(console.log).toHaveBeenCalledOnceWith(GET_COLLECTION_ERROR_LOG, responseError);
   });
 });
