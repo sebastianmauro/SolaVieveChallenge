@@ -1,16 +1,22 @@
 import { TestBed } from '@angular/core/testing';
-
 import { FeedbackService } from './feedback.service';
+import { Firestore } from '@angular/fire/firestore';
 
-describe('FeedbackService', () => {
-  let service: FeedbackService;
+describe('LoginComponent', () => {
+  let feedbackService: FeedbackService;
+  beforeEach(async () => {
+    const spy = jasmine.createSpyObj('Firestore', ['']);
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(FeedbackService);
+    await TestBed.configureTestingModule({
+      providers: [FeedbackService,
+        { provide: Firestore, useValue: spy },
+      ],
+    })
+    .compileComponents();
+    feedbackService = TestBed.inject(FeedbackService);
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+  it('should create correctly', () => {
+    expect(feedbackService).toBeTruthy();
   });
 });
