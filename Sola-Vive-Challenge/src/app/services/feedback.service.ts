@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { collection, Firestore, addDoc, collectionData } from '@angular/fire/firestore';
-import { firstValueFrom, lastValueFrom, Observable } from 'rxjs';
+import { firstValueFrom, Observable } from 'rxjs';
 import Feedback from '../interfaces/feedback.interface';
 
 @Injectable({
