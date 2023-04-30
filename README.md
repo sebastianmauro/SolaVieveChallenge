@@ -6,6 +6,7 @@ Requirements:
   Node: 16.16.0
   Package Manager: npm 8.14.0
   OS: win32 x64
+  Google Chrom (for Karma)
   
  Steps:
   clone the repository
