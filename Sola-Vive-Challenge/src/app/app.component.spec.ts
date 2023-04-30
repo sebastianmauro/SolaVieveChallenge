@@ -11,7 +11,6 @@ import { MatInputModule } from '@angular/material/input';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { CUSTOMER_SERVICE_RATE_TITLE, EXPERIENCE_RATE_TITLE, GET_COLLECTION_ERROR_LOG, PAYMENT_RATE_TITLE } from './constants/sentences';
 import { FeedbackSubject } from 'src/enums/feedbackSubject';
-import { delay } from 'rxjs';
 
 describe('AppComponent', () => {
   let appComponent: MainComponent;
@@ -75,12 +74,12 @@ describe('AppComponent', () => {
   });
 
   it('if nothing goes wrong when sends openSuccesPopUp sholud be call', async () => {
-    const spyOpenSuccesPopUp = spyOn(appComponent, 'openSuccesPopUp');
+    const appComponentSpy = spyOn(appComponent, 'openSuccesPopUp');
     const okResponsePromise = Promise.resolve('moked ok response');
     feedbackServiceSpy.saveFeedback.and.returnValue(okResponsePromise);
     await appComponent.send();
-    expect(spyOpenSuccesPopUp).toHaveBeenCalled();
-    spyOpenSuccesPopUp.calls.reset();
+    expect(appComponentSpy).toHaveBeenCalled();
+    appComponentSpy.calls.reset();
   });
 
   it('if something goes wrong when sends openErrorOccurredPopUp sholud be call', async () => {
