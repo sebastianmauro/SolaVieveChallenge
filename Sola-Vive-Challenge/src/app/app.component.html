@@ -1,6 +1,7 @@
 <mat-card>
     <mat-card-header class="header">
         <img src="./assets/icons/SolaVieve-logo.svg">
+        <b *ngIf="loading$ | async">Loading...</b>
         <button class="send-button" (click)="printOnConsole()">PRINT ON CONSOLE</button>
     </mat-card-header>
     <div class="panel">

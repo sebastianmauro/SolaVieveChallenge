@@ -16,6 +16,9 @@ import { FiveStarsComponent } from './components/five-stars/five-stars.component
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { ROOT_REDUCERS } from './state/app.state';
 
 @NgModule({
   declarations: [
@@ -39,6 +42,8 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
     RatingModule.forRoot(),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
+    StoreModule.forRoot(ROOT_REDUCERS),
+    StoreDevtoolsModule.instrument({name: 'TEST'}),
   ],
   providers: [],
   bootstrap: [MainComponent]
