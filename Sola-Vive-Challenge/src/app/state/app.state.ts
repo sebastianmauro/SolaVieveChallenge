@@ -1,5 +1,4 @@
 import { ActionReducerMap } from "@ngrx/store";
-import Feedback from "../interfaces/feedback.interface";
 import { FeedbackState } from "../interfaces/feedback.state";
 import { feedbackReducer } from "./reducers/feebacks.reducers";
 

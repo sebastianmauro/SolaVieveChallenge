@@ -13,3 +13,8 @@ export const selectFeedbacksLoading = createSelector(
     selectFeedbacksFeature,
     (state: FeedbackState) => state.loading
 )
+
+export const selectFeedbacksError = createSelector(
+    selectFeedbacksFeature,
+    (state: FeedbackState) => state.error
+)

@@ -8,9 +8,9 @@ import Feedback from './interfaces/feedback.interface';
 import { FeedbackService } from './services/feedback.service';
 import { RatingAttibutes } from 'src/enums/ratingAttributes';
 import { Store } from '@ngrx/store';
-import { loadedFeedback, loadFeedback } from './state/actions/items.actions';
+import { faildToLoadFeedbacks, getFeedback, loadingFeedbacks } from './state/actions/items.actions';
 import { Observable } from 'rxjs';
-import { selectFeedbacksLoading } from './state/selectors/feedbacks.selectors';
+import { selectFeedbacksError, selectFeedbacksLoading } from './state/selectors/feedbacks.selectors';
 
 @Component({
   selector: 'app-root',
@@ -20,6 +20,7 @@ import { selectFeedbacksLoading } from './state/selectors/feedbacks.selectors';
 
 export class MainComponent {
   loading$: Observable<boolean> = this.store.select(selectFeedbacksLoading);
+  error$: Observable<boolean> = this.store.select(selectFeedbacksError);
   public comment: string = "";
   public experienceRateText: string;
   public paymentRateText: string;
@@ -43,8 +44,6 @@ export class MainComponent {
 
   async send(){
     console.log("sending feedback");
-    this.loading$ = this.store.select(selectFeedbacksLoading);
-    this.store.dispatch(loadFeedback());
     const feedbackToSend: Feedback = {
       experienceRate: this.experienceRate,
       paymentProcessRate: this.paymentRate,
@@ -60,12 +59,14 @@ export class MainComponent {
   }
 
   async printOnConsole(){
+    this.store.dispatch(loadingFeedbacks());
     await this.feedbackService.getFeedback()
-    .then((collection: any)=>{
-      this.store.dispatch(loadedFeedback({addenFeedback:{experienceRate:1, paymentProcessRate:1, customerServiceRate:1}}))
+    .then((collection: Feedback[])=>{
+      this.store.dispatch(getFeedback({collection}));
       console.log(collection);
     })
     .catch((error: any)=>{
+      this.store.dispatch(faildToLoadFeedbacks());
       console.log(GET_COLLECTION_ERROR_LOG, error);
     });
   }
